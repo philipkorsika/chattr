@@ -67,7 +67,7 @@
             var wasAtBottom = window.innerHeight + window.scrollY > document.body.offsetHeight;
 
             var log = document.getElementById("chatlog");
-            var line = document.createElement("span");
+            var line = document.createElement("div");
             line.setAttribute("style", "color: " + colour);
             line.innerHTML = msg;
             log.appendChild(line);
