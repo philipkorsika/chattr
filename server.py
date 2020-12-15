@@ -86,7 +86,7 @@ def sub(room):
 	if not lastReceivedMessage or queue[room]["last_msg_id"] > lastReceivedMessage:
 		if len(queue[room]["msgs"]) > 0: return all_messages_since(lastReceivedMessage, room)
 	if queue[room]["event"].wait(25):
-		return {"msgs":[format_message(queue[room]["msgs"][-1])]}
+		return all_messages_since(lastReceivedMessage, room)
 	return {"msgs":[]}
 
 if __name__ == "__main__":
