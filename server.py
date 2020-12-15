@@ -80,10 +80,10 @@ def sub(room):
 	try:
 		lastReceivedMessage = int(request.query['since'])
 	except KeyError, ValueError:
-		lastReceivedMessage = None
+		lastReceivedMessage = -1
 	response.add_header("Cache-Control", "public, max-age=0, no-cache")
 
-	if not lastReceivedMessage or queue[room]["last_msg_id"] > lastReceivedMessage:
+	if queue[room]["last_msg_id"] > lastReceivedMessage:
 		if len(queue[room]["msgs"]) > 0: return all_messages_since(lastReceivedMessage, room)
 	if queue[room]["event"].wait(25):
 		return all_messages_since(lastReceivedMessage, room)
