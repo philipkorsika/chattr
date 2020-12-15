@@ -85,9 +85,8 @@ def sub(room):
 
 	if queue[room]["last_msg_id"] > lastReceivedMessage and len(queue[room]["msgs"]) > 0:
 		return all_messages_since(lastReceivedMessage, room)
-	if queue[room]["event"].wait(25):
-		return all_messages_since(lastReceivedMessage, room)
-	return {"msgs":[]}
+	queue[room]["event"].wait(25)
+	return all_messages_since(lastReceivedMessage, room)
 
 if __name__ == "__main__":
 	purge_dead_rooms()
