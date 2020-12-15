@@ -27,7 +27,7 @@
 
     <script type="text/javascript">
         var room = window.location.pathname.split('/').reverse()[1] + "@" + window.location.hostname;
-        var latestReceivedMessage = 0; 
+        var latestReceivedMessage = -1;
         var message_filters = [];
 
         function getMessage() {

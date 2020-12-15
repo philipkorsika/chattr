@@ -7,7 +7,7 @@ from threading import Event, Timer
 from collections import defaultdict
 from bottle import run, route, request, response, redirect, static_file, error
 
-queue = defaultdict(lambda: {"msgs": [], "last_msg_time": datetime.now(), "current_colour": 0.2, "last_msg_id": 0, "event": Event()})
+queue = defaultdict(lambda: {"msgs": [], "last_msg_time": datetime.now(), "current_colour": 0.2, "last_msg_id": -1, "event": Event()})
 
 def send_message(msg, colour, room):
 	queue[room]["last_msg_id"] += 1
@@ -83,9 +83,8 @@ def sub(room):
 		lastReceivedMessage = -1
 	response.add_header("Cache-Control", "public, max-age=0, no-cache")
 
-	if queue[room]["last_msg_id"] > lastReceivedMessage and len(queue[room]["msgs"]) > 0:
-		return all_messages_since(lastReceivedMessage, room)
-	queue[room]["event"].wait(25)
+	if lastReceivedMessage >= queue[room]["last_msg_id"]:
+	    queue[room]["event"].wait(25)
 	return all_messages_since(lastReceivedMessage, room)
 
 if __name__ == "__main__":
