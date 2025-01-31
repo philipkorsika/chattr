@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="icon" href="../../favicon_notify.ico">
 
     <style>
         input {
@@ -76,13 +77,19 @@
                 document.getElementById("message").scrollIntoView();
 
             if (document.hidden)
-                document.title = "[*] " + room;
+                set_notification(true);
         }
 
         document.addEventListener("visibilitychange", function () {
             if (!document.hidden)
-                document.title = room;
+                set_notification(false);
         });
+
+        function set_notification(arethere) {
+          document.title = (arethere ? "[*] " : "") + room;
+          document.querySelector("link[rel~='icon']").href = "../../favicon" + (arethere ? "_notify" : "") + ".ico";
+
+        }
 
         function load_plugin(url) {
             var s = document.createElement('script');
@@ -93,7 +100,7 @@
         }
 
         window.addEventListener('load', function() {
-            document.title = room;
+            set_notification(false);
             JSON.parse(localStorage.getItem('plugins') || '[]').forEach(load_plugin);
             getMessage();
         });
