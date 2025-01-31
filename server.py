@@ -79,7 +79,7 @@ def all_messages_since(when, room):
 def sub(room):
 	try:
 		lastReceivedMessage = int(request.query['since'])
-	except KeyError, ValueError:
+	except (KeyError, ValueError):
 		lastReceivedMessage = -1
 	response.add_header("Cache-Control", "public, max-age=0, no-cache")
 
