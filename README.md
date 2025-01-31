@@ -10,19 +10,22 @@ Install
 
 Requires Python and Python dev-tools, and [pip installed](http://python-packaging-user-guide.readthedocs.org/en/latest/installing/#install-pip-setuptools-and-wheel) 
 
-e.g. On Ubuntu 15.10 :
+Create a virtual env, install bottle and gevent, then start the server.
 
 ```bash
 $ python -V
-=> Python 2.7.10
-$ sudo apt-get install python2.7-dev python-pip
+=> Python 3.12.3
+$ python -m venv ./venv
+$ source ./venv/bin/activate
+(venv) $ pip install bottle gevent
+(venv) $ python server.py
 ```
 
-Install bottle and gevent, then start the server.
+Browse to `http://localhost:9092`
+
+For future runs:
+
 ```bash
-$ pip install --user bottle gevent
-$ python server.py
+$ source ./venv/bin/activate
+(venv) $ python server.py
 ```
-
-Browse to `localhost:9092`
-

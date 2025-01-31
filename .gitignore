@@ -2,3 +2,4 @@
 *.log
 nohup.out
 bottle.py
+venv
