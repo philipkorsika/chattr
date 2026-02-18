@@ -18,7 +18,7 @@ def send_message(msg, colour, room):
 		queue[room]["msgs"].pop(0)
 	queue[room]["last_msg_time"] = datetime.now()
 
-def purge_dead_rooms(every=43200, ttl=259200): #43200s = 12h, 259200s = 72h = 3d
+def purge_dead_rooms(every=43200, ttl=604800): #43200s = 12h, 604800s = 7d = 1w
 	for room in [room for room in queue if queue[room]["last_msg_time"] < datetime.now() - timedelta(seconds=ttl)]:
 		del queue[room]
 	Timer(every, purge_dead_rooms).start()
