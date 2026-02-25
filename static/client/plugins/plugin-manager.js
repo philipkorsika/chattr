@@ -10,7 +10,8 @@
       'icon-for-external-links.js',
       'inline-images.js',
       'keep-plugin-manager-open.js',
-      'linkify-urls.js'
+      'linkify-urls.js',
+      'timestamp-when-received.js'
     ].forEach(function(url) {
       url = '../../s/plugins/' + url;
       if (plugins_available.includes(url)) return;
