@@ -89,4 +89,4 @@ def sub(room):
 
 if __name__ == "__main__":
 	purge_dead_rooms()
-	run(port=9092, server="gevent")
+	run(port=9092, server="gevent", quiet=True)
